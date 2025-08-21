@@ -12,13 +12,28 @@
           <li><a href="/">Home</a></li>
           <li><a href="/">Talks</a></li>
         </ul>
-        <div class="unlogged">
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Registro</a></li>
-        </div>
+        {{#if session.userId}}
+          <div class="logged">
+            <li><a href="/talks/dashboard">Dashboard</a></li>
+            <li><a href="/leave">Sair</a></li>
+          </div>
+        {{else}}
+          <div class="unlogged">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Registro</a></li>
+          </div>
+        {{/if}}
       </nav>
     </div>
     <div class="container">
+      {{#if messages.message}}
+        <div class="messages"> {{messages.message}}</div>
+      {{else}}
+        {{#if messages.sucess}}
+          <div class="sucess"> {{messages.sucess}}</div>
+        {{/if}}
+      {{/if}}
+
       {{{body}}}
     </div>
     <footer>
