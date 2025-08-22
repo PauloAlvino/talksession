@@ -9,5 +9,6 @@ routes.get('/dashboard/post', checkAuth, TalksController.talkPost)
 routes.post('/dashboard/post', checkAuth, TalksController.postTalks)
 routes.get('/dashboard/update/:id', checkAuth, TalksController.showTalkUpdate)
 routes.post('/dashboard/update/:id', checkAuth, TalksController.talkUpdate)
+routes.post('/dashboard/delete/:id', checkAuth, TalksController.deleteTalk)
 
 module.exports = routes

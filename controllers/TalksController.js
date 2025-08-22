@@ -4,8 +4,13 @@ const User = require("../models/User");
 
 module.exports = class TalksController {
   static async showTalks(req, res) {
+    const userId = req.session.userId;
     const allTalksData = await Talk.findAll({ include: User });
-    const allTalks = allTalksData.map((t) => t.get({ plain: true }));
+    const allTalks = allTalksData.map((t) => {
+      const talk = t.get({plain: true});
+      talk.isOwner = userId === talk.UserId;
+      return talk
+    })
     res.render("talks/home", { allTalks: allTalks });
   }
   static async dashboard(req, res) {
@@ -43,5 +48,19 @@ module.exports = class TalksController {
     };
     await Talk.update(talk, {where: {id: id}});
     res.redirect('/talks/dashboard')
+  }
+  static async deleteTalk(req,res) {
+    const id = req.params.id;
+    try {
+      await Talk.destroy({where: {id: id}});
+      req.flash('sucess', 'Comentario apagado com sucesso')
+      req.session.save(() => {
+        res.redirect('/')
+      })
+    }catch(err) {
+      console.log(err);
+      
+    }
+
   }
 };

@@ -1,9 +1,24 @@
-<h1>Essa é a home</h1>
-{{#each allTalks}}
-  <div>
-    {{this.User.name}}: 
-    {{this.title}}
-    {{this.description}}
-    <form action=""></form>
-  </div>
-{{/each}}
+<h1 class="title">Talk Session</h1>
+<div class="talks-container">
+  {{#each allTalks}}
+    <div class="talk">
+      <div class="talk-content">
+        <span class="talk-author">{{this.User.name}}</span>
+        <span class="talk-title">{{this.title}}</span>
+        <p class="talk-desc">{{this.description}}</p>
+      </div>
+      {{#if this.isOwner}}
+        <div class="talk-actions">
+          <a href="talks/dashboard/update/{{this.id}}" class="button">Editar</a>
+          <form
+            action="talks/dashboard/delete/{{this.id}}"
+            method="POST"
+            class="delete-form"
+          >
+            <input type="submit" class="button danger" value="Excluir" />
+          </form>
+        </div>
+      {{/if}}
+    </div>
+  {{/each}}
+</div>

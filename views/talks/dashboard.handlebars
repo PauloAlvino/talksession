@@ -1,12 +1,23 @@
-<div>
-  <h1>Criar Comentario</h1>
-  <a href="dashboard/post" class="button">Criar</a>
-</div>
-<h1>Seus Comentarios: </h1>
-{{#each userTalks}}
-  <div>
-    {{this.title}}
-    {{this.description}}
-    <a href="dashboard/update/{{this.id}}" class="button">Editar</a>
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Criar Comentario</h1>
+    <a href="dashboard/post" class="button">Criar</a>
   </div>
-{{/each}}
+  <h1>Seus Comentarios: </h1>
+  <div class="dashboard-list">
+    {{#each userTalks}}
+      <div class="dashboard-item">
+        <div class="item-content">
+          <div class="item-title">{{this.title}}</div>
+          <p class="item-desc">{{this.description}}</p>
+        </div>
+        <div class="item-actions">
+          <a href="dashboard/update/{{this.id}}" class="button">Editar</a>
+          <form action="dashboard/delete/{{this.id}}" method="POST">
+            <input type="submit" class="button danger" value="Excluir" />
+          </form>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
