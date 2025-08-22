@@ -10,8 +10,14 @@ const Talk = db.define('Talk', {
         allowNull: false,
         require: true
     },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        require: true
+    },
     rating: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
+        allowNull: true
     }
 })
 Talk.belongsTo(User)

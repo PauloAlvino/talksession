@@ -1,0 +1,12 @@
+<div>
+  <h1>Criar Comentario</h1>
+  <a href="dashboard/post" class="button">Criar</a>
+</div>
+<h1>Seus Comentarios: </h1>
+{{#each userTalks}}
+  <div>
+    {{this.title}}
+    {{this.description}}
+    <a href="dashboard/update/{{this.id}}" class="button">Editar</a>
+  </div>
+{{/each}}

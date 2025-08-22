@@ -45,21 +45,21 @@ a:hover {
 }
 
 .title {
-    display: block;
-    width: fit-content;
-    font-size: 3rem;
-    margin: 2rem auto;
-    position: relative;
+  display: block;
+  width: fit-content;
+  font-size: 3rem;
+  margin: 2rem auto;
+  position: relative;
 }
-.title::before{
-    content: '';
-    width: 1.7rem;
-    height: 1.7rem;
-    z-index: -1;
-    position: absolute;
-    bottom: 2px;
-    left: -5px;
-    background-color: var(--color-primary-light);
+.title::before {
+  content: "";
+  width: 1.7rem;
+  height: 1.7rem;
+  z-index: -1;
+  position: absolute;
+  bottom: 2px;
+  left: -5px;
+  background-color: var(--color-primary-light);
 }
 .nav-container {
   border-bottom: 2px solid var(--color-primary);
@@ -87,9 +87,10 @@ a:hover {
   align-items: center;
 }
 .logged {
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .button {
@@ -119,6 +120,7 @@ footer {
   padding: 2rem;
   border-radius: var(--radius);
   box-shadow: 0 0 10px 3px #a241e7;
+  position: relative;
 }
 
 .form label {
@@ -127,28 +129,27 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-.form input {
-  padding: 0.4rem;
+.form input,
+.form textarea {
+  padding: 1rem;
   border-radius: var(--radius);
   border: none;
   margin-bottom: 1rem;
-  padding: 1rem;
   width: 100%;
   transition: background var(--transition), border-color 0.3s ease,
     color 0.3s ease;
 }
 
-.form input:hover::placeholder {
-  color: #fff;
-}
-.form input:hover {
+.form input:hover,
+.form textarea:hover {
   border: 2px solid var(--color-primary-dark);
   background-color: #3d3d3d;
   color: #fff;
   box-shadow: 0 0 0 3px #a241e7;
 }
 
-.form input:focus {
+.form input:focus,
+.form textarea:focus {
   outline: none;
   border: 2px solid var(--color-primary-dark);
   background-color: #3d3d3d;
@@ -156,28 +157,55 @@ footer {
   box-shadow: 0 0 0 3px #a241e7;
 }
 
-.form input:focus::placeholder {
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #999;
+}
+
+.form input:hover::placeholder,
+.form textarea:hover::placeholder,
+.form input:focus::placeholder,
+.form textarea:focus::placeholder {
   color: #fff;
 }
 
-.form input[type='submit'] {
-    margin-top: 1rem;
+.form input[type="submit"] {
+  margin-top: 1rem;
 }
- 
+
+.form textarea {
+  resize: none;
+  height: 10rem;
+}
+
 .messages {
-    padding: 1rem;
-    background-color: red;
-    text-align: center;
-    font-weight: bold;
-    border-radius: var(--radius);
-    margin-block: .5rem;
+  padding: 1rem;
+  background-color: red;
+  text-align: center;
+  font-weight: bold;
+  border-radius: var(--radius);
+  margin-block: 0.5rem;
 }
 
 .sucess {
-    padding: 1rem;
-    background-color: green;
-    text-align: center;
-    font-weight: bold;
-    border-radius: var(--radius);
-    margin-block: .5rem;
+  padding: 1rem;
+  background-color: green;
+  text-align: center;
+  font-weight: bold;
+  border-radius: var(--radius);
+  margin-block: 0.5rem;
+}
+.arrow {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--color-primary);
+  border-radius: var(--radius);
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  cursor: pointer;
+  transition: transform .5 ease-in ;
+}
+.arrow:hover {
+  transform: translate(-5px);
 }

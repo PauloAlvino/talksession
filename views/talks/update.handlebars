@@ -1,0 +1,23 @@
+<h1 class="title">Atualizar Comentario: </h1>
+<form
+  action="/talks/dashboard/update/{{talkSelected.id}}"
+  method="POST"
+  class="form dashboard-form"
+>
+  <a href="/"><img src="/img/arrow.svg" alt="" class="arrow" /></a>
+  <label for="title">Titulo: </label>
+  <input
+    type="text"
+    name="title"
+    id="title"
+    value="{{talkSelected.title}}"
+    placeholder="Titulo da Publicação"
+  />
+  <label for="description">Descrição: </label>
+  <textarea
+    name="description"
+    id="description"
+    placeholder="Descreva sua Publicação"
+  >{{talkSelected.description}}</textarea>
+  <input type="submit" value="Atualizar" />
+</form>

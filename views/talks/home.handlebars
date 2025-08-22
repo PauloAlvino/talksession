@@ -1,1 +1,9 @@
 <h1>Essa é a home</h1>
+{{#each allTalks}}
+  <div>
+    {{this.User.name}}: 
+    {{this.title}}
+    {{this.description}}
+    <form action=""></form>
+  </div>
+{{/each}}

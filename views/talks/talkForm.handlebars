@@ -1,0 +1,22 @@
+<h1 class="title">Criar Comentario: </h1>
+<form action="/talks/dashboard/post" method="POST" class="form dashboard-form">
+  <a href="/talks/dashboard"><img
+      src="/img/arrow.svg"
+      alt=""
+      class="arrow"
+    /></a>
+  <label for="title">Titulo: </label>
+  <input
+    type="text"
+    name="title"
+    id="title"
+    placeholder="Titulo da Publicação"
+  />
+  <label for="description">Descrição: </label>
+  <textarea
+    name="description"
+    id="description"
+    placeholder="Descreva sua Publicação"
+  ></textarea>
+  <input type="submit" value="Enviar" />
+</form>

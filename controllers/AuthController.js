@@ -4,6 +4,36 @@ module.exports = class AuthController {
   static login(req, res) {
     res.render("auth/login");
   }
+  static async loginPost(req, res) {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      req.flash("message", "Todos os Campos São Obrigatórios");
+      res.render("auth/login");
+      return;
+    }
+    const user = await User.findOne({ where: { email: email } });
+
+    if (!user) {
+      req.flash("message", "Usuario nao existe");
+      req.session.save(() => {
+        res.redirect("/login");
+      });
+      return;
+    }
+    const passwordCompared = bcrypt.compareSync(password, user.password);
+
+    if (!passwordCompared) {
+      req.flash("message", "Senha incorreta, tente novamente");
+      req.session.save(() => {
+        res.redirect("/login");
+      });
+      return;
+    }
+    req.session.userId = user.id;
+    req.session.save(() => {
+      res.redirect("/");
+    });
+  }
   static register(req, res) {
     res.render("auth/register");
   }
@@ -46,5 +76,15 @@ module.exports = class AuthController {
       console.error(err);
       res.status(500).send("Erro ao registrar usuário");
     }
+  }
+  static async userLogout(req, res) {
+    req.session.destroy((err) => {
+      console.log(err);
+
+      if (err) {
+        return res.redirect("/");
+      }
+      res.redirect("/login");
+    });
   }
 };

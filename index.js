@@ -35,8 +35,7 @@ app.use(
     }),
     cookie: {
       secure: false,
-      maxAge: 360000,
-      expires: new Date(Date.now() + 360000),
+      maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
     },
   })
@@ -51,9 +50,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/talks", talksRoutes);
 app.use("/", authRoutes);
 app.use("/", TalksController.showTalks);
-app.use("/talks", talksRoutes);
 
 conn
   .sync()

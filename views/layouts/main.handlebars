@@ -13,9 +13,13 @@
           <li><a href="/">Talks</a></li>
         </ul>
         {{#if session.userId}}
-          <div class="logged">
-            <li><a href="/talks/dashboard">Dashboard</a></li>
-            <li><a href="/leave">Sair</a></li>
+          <div>
+            <ul class="logged">
+              <li><a href="/talks/dashboard">Dashboard</a></li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
           </div>
         {{else}}
           <div class="unlogged">
